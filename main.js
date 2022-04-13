@@ -23,11 +23,14 @@ var bird = {
     x:100,
     y:250
 }
-
+let score = 0
 var distance = 140
 const gamerun = () =>{
     context.drawImage(hinhnenchinh,0,0)
     context.drawImage(birdimg,bird.x,bird.y)  
+    context.fillStyle = 'black'
+    context.font = '20px Verdana'
+    context.fillText("Score " + score, canvas.width - 100, 20);
     bird.y += 3
     ong.x +=250
     ong.y =  Math.floor(Math.random() * 200)-200
@@ -38,12 +41,17 @@ const gamerun = () =>{
     //     ongtrens.shift()
         
     // }
+   
     for ( var i = 0; i< ongtrens.length; i++){
         context.drawImage(ongtren,ongtrens[i].x,ongtrens[i].y)
     context.drawImage(ongduoi,ongtrens[i].x,(ongtren.height+ongtrens[i].y)+distance)
     ongtrens[i].x -= 5
+    if(( ongtrens[i].x == 100 && bird.y-birdimg.height >  (ongtren.height+ongtrens[i].y))
+    ||( ongtrens[i].x == 100 && bird.y+birdimg.height <  (ongtren.height+ongtrens[i].y+distance))){
     
-      
+        score +=1
+    }
+    
      
         if(( ongtrens[i].x == 100 && bird.y-birdimg.height <  (ongtren.height+ongtrens[i].y))
         ||( ongtrens[i].x == 100 && bird.y+birdimg.height >  (ongtren.height+ongtrens[i].y+distance))){
